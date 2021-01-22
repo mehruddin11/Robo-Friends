@@ -41,8 +41,8 @@ render(){
 		    	<ErrorBoundary>
 
 		   		<CardList robots = {filterRobots}/>
-		   		</ErrorBoundary>
-		   	</Scrol>
+		   	</ErrorBoundary>
+		   </Scrol>
 			
 		</div>
 		);
