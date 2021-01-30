@@ -1,58 +1,67 @@
-import React ,{Component}  from 'react'
-import CardList from './cardList'
- 
-import SearchBox from './searchBox'
+import React, {Component} from 'react'
+// import {robots} from './robots';
+import CardList from './cardlist';
+import SearchBox from './searchbox';
+import Scroll from './scroll';
 import './App.css'
-import Scrol from './scrool'
-import ErrorBoundary from './ErrorBoundary'
- 
-class App extends Component {
-	constructor(){
-		super()
-		this.state = {
-			robots :[],
-			searchfield :''
+import ErrorBoundary from './errorboundary';
+import {connect} from 'react-redux';
+import {setSearchField} from './action.js';
+import {RequestRobots} from './action'
 
+
+const mapStateToprops = (state) =>{
+	return {
+		searchField:state.SearchRobots.searchField,
+		robots:state.RequestRobots.robots,
+		ispending:state.RequestRobots.ispending,
+		error:state.RequestRobots.error
 	}
 }
+const mapDispatchToprops = (dispatch) =>{
+	return {
+		onSearchChange:(event)=>dispatch(setSearchField(event.target.value)),
+		onRequestRobots:() =>dispatch(RequestRobots())
+	}
+
+}
+
+class App extends Component{
 componentDidMount(){
-   	fetch('https://jsonplaceholder.typicode.com/users')
-  	.then(response => response.json())
-  	.then(user =>this.setState({robots:user}))
+	 
+	this.props.onRequestRobots()
 }
-onSearchChange =(event) =>{
-		this.setState({searchfield: event.target.value})
-}
-	
-render(){
-		const filterRobots = this.state.robots.filter(robots =>{
-			return robots.name.toLowerCase().includes(this.state.searchfield.toLowerCase())
-			})
-		if (this.state.robots.length === 0){
-			return <h1> Loading..</h1>
-		}
 
-		else
-			return( 
-		<div className = 'tc'>
-		   <h1 className = 'f3'> RoboFriends</h1>
-		    <SearchBox Searchchange ={this.onSearchChange}/>
-		    <Scrol>
-		    	<ErrorBoundary>
-
-		   		<CardList robots = {filterRobots}/>
-		   	</ErrorBoundary>
-		   </Scrol>
-			
-		</div>
-		);
-			 
+	render(){
+		const {robots , ispending} = this.props
 		
-}
+		const filterRobots =robots.filter((robot)=>{
+			return robot.name.toLowerCase().includes(this.props.searchField)
+		})
+		
+		return ispending ?
+				<h1 className = 'tc'> Loading.. </h1> :
+				
+		 
+			(
+		<div className = 'tc'>
+			<h1 className = 'f1'> Robo Freinds</h1>
+			<SearchBox searchChange = {this.props.onSearchChange} />
+			<Scroll>
+				<ErrorBoundary>
 
-	}
+					<CardList robots = {filterRobots}/>
+				</ErrorBoundary>
+
+			</Scroll>
+
+		</div>
 
 
+			)
+
+		}
 	
-
-export default App
+ 
+}
+export default connect(mapStateToprops, mapDispatchToprops)(App);

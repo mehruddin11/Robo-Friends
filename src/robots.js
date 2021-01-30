@@ -29,7 +29,7 @@ export const robots = [
   {
   	id:5,
   	name:'merry',
-  	username:'meryj',
+  	username:'mery',
   	email:'meryj123@gmail.com'
   },
   {
@@ -61,6 +61,72 @@ export const robots = [
   	name:'javascript',
   	usernam:'javascript',
   	email:'javascript11@gmail.com'
+  },
+
+
+ {
+    id:11,
+    name:'mehruddinX',
+    username:'khan',
+    email:'qwerty123@gmail.com'
+
+  },
+  {
+    id:12,
+    name:'ogggyO',
+    username:'oggycat',
+    email:'oggy123@gmail.com'
+  },
+  {
+    id:13,
+    name:'bobB',
+    username:'bobdogG',
+    email:'bobdog88@gmail.com'
+
+  },
+  {
+    id:14,
+    name:'jackcatC',
+    username:'jackCat',
+    email:'jackCat33@gmail.com'
+
+  },
+  {
+    id:15,
+    name:'merryJ',
+    username:'meryj',
+    email:'meryj123@gmail.com'
+  },
+  {
+    id:16,
+    name:'robot_x',
+    username:'AI robot',
+    email:'ai222@gmail.com'
+  },
+  {
+    id:17,
+    name:'Trans',
+    username:'trans',
+    email:'trans33@gmail.com'
+  },
+  {
+    id:18,
+    name:'bullet_x',
+    username:'bullet44',
+    email:'bullet44@gmail.com'
+  },
+  {
+    id:19,
+    name:'Robot',
+    username:'Dog',
+    email:'Dog22@gmail.com'
+  },
+  {
+    id:20,
+    name:'java',
+    usernam:'javascript',
+    email:'javascript11@gmail.com'
   }
 
  ];
+ export default robots
